@@ -1,0 +1,14 @@
+#白名单，需要直连￼
+#360手机卫士中的天气，骚扰拦截库
+DOMAIN-SUFFIX, cdn.weather.hao.360.cn
+DOMAIN-SUFFIX, strategy.shouji.360.cn
+DOMAIN-SUFFIX, antifraud.shouji.360.cn
+DOMAIN-SUFFIX, s.mvconf.f.360.cn
+
+
+#今日头条专业版放映厅才能正常加载
+DOMAIN-KEYWORD, snssdk.com
+
+#磁力天堂视频网站,有这两个规则才能正常显示
+DOMAIN-SUFFIX, clgod.xyz
+DOMAIN-SUFFIX, pstatp.com

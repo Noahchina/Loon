@@ -1,0 +1,36 @@
+#黑名单，禁止联网￼
+#大众点评开屏广告
+DOMAIN-SUFFIX, r.dianping.com
+DOMAIN-SUFFIX, r1.dianping.com
+
+#喜马拉雅开屏广告
+DOMAIN-SUFFIX, adsehera.ximalaya.com
+
+#航旅纵横商城
+DOMAIN-SUFFIX, airpointshop.com
+DOMAIN-SUFFIX, mall.umetrip.com
+
+#航旅纵横开屏视频广告（native/startup 配置）
+DOMAIN-SUFFIX, umep.umetrip.com
+DOMAIN-SUFFIX, startup.umetrip.com
+
+#华为商城
+DOMAIN-SUFFIX, vmall.com
+
+#奥克斯商城
+DOMAIN-SUFFIX, auxshop.com
+
+#酷我音乐开屏广告
+DOMAIN-SUFFIX, zimg.kuwo.cn
+#酷我推广, 装扮中心等也用不了了
+DOMAIN-SUFFIX, h5app.kuwo.cn
+
+#360
+DOMAIN-SUFFIX, m2.nicaifu.com
+DOMAIN-SUFFIX, juzifenqi.com
+
+#中国移动
+DOMAIN,onewsimg.com
+DOMAIN,v.cmcc-cs.cn
+DOMAIN,da.mmarket.com
+DOMAIN-SUFFIX,miguvideo.com
