@@ -12,11 +12,21 @@
 hostname = pay.camoryapps.com,ad.camoryapps.com
 *******************************/
 
-var aFengYe = $response.body;
-var obj =  JSON.parse(aFengYe);
+var body = $response.body;
+var obj = JSON.parse(body);
 
-obj.data.isR = obj.data.isSubscribe = true;
-obj.data.timeExpire = "2999-01-01 00:00:00";
+// 兼容字段存在性
+if (obj && obj.data) {
+    obj.data.isR = true;
+    obj.data.isSubscribe = true;
+    obj.data.timeExpire = "2999-01-01 00:00:00";
 
-aFengYe = JSON.stringify(obj);
-$done(aFengYe);
+    // 增强兼容（防止 App 多字段校验）
+    obj.data.vip = true;
+    obj.data.isVip = true;
+    obj.data.vipType = 1;
+}
+
+// Loon 必须这样返回
+$done({ body: JSON.stringify(obj) });
+
