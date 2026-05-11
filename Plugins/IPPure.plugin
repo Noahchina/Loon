@@ -1,0 +1,12 @@
+#!name=IP-Pure
+#!desc=节点 IP 纯净度检测（IPPure）通过IPPure接口检测IP质量。需设定select类型代理策略组:全球手动，测试时，在全球手动策略组下，先手动选中所需测试节点，再长按节点选择IPPure测试。
+#!date=2026-01-21
+#!category=🐹 BOBO面板模块
+#!author=StashNetworks[https://github.com/StashNetworks],sooyaaabo[https://github.com/sooyaaabo]
+#!openUrl = https://ippure.com/
+
+[Rule]
+DOMAIN-SUFFIX, ippure.com, PROXY
+
+[Script]
+generic script-path = https://raw.githubusercontent.com/Noahchina/Loon/main/Scripts/IPPure.js, timeout = 10, tag = IPPure, img-url = leaf
