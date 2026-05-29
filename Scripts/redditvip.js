@@ -28,8 +28,8 @@ function deepPatch(obj) {
 
   for (const key in obj) {
     if (key === 'isPremiumMember' && obj[key] === false) obj[key] = true;
-    if (key === 'isSubscribed' && obj[key] === false) obj[key] = true;
-//    if (key === 'isEmployee' && obj[key] === false) obj[key] = true;
+//    if (key === 'isSubscribed' && obj[key] === false) obj[key] = true;
+    if (key === 'isEmployee' && obj[key] === false) obj[key] = true;
     if (key === 'has_gold_subscription' && obj[key] === false) obj[key] = true;
     if (key === 'hasGoldSubscription' && obj[key] === false) obj[key] = true;
     if (key === 'isGold' && obj[key] === false) obj[key] = true;
@@ -80,8 +80,8 @@ function processResponse() {
     // 双保险：全局字符串替换，补漏
     body = JSON.stringify(obj)
       .replace(/"isPremiumMember":false/g, '"isPremiumMember":true')
-      .replace(/"isSubscribed":false/g, '"isSubscribed":true')
-//      .replace(/"isEmployee":false/g, '"isEmployee":true')
+//      .replace(/"isSubscribed":false/g, '"isSubscribed":true')
+      .replace(/"isEmployee":false/g, '"isEmployee":true')
       .replace(/"has_gold_subscription":false/g, '"has_gold_subscription":true')
       .replace(/"hasGoldSubscription":false/g, '"hasGoldSubscription":true')
       .replace(/"isGold":false/g, '"isGold":true')
