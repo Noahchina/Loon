@@ -2,7 +2,7 @@ var body = $response.body;
 var obj = JSON.parse(body);
 
 obj.vipList = [{
-    "expireDate": "20990909"
+    "expireDate": "20280609"
     "isAutoDeduct": "0",
     "isVip": "1",
     "isYear": "1",
