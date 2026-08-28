@@ -1,21 +1,14 @@
 /**
- * 夸克 iOS - 屏蔽首页「福利中心」
- * V3
+ * 夸克 iOS - 去除「福利中心」
+ * V4
  *
- * 目标：
- * https://hp-cms.quark.cn/open-cms
- *
- * 原理：
- * 精确修改：
- * cms_user_center_welfare_farm_new_config
- *
- * 将：
- * res_data.data
- *
- * 清空，使首页不再获得福利/农场运营卡片配置。
+ * 1. 修改 hp-cms 首页 CMS 配置
+ * 2. 删除 welfare 相关字段
+ * 3. 删除福利中心相关配置
  */
 
 (function () {
+
     const body = $response && $response.body;
 
     if (!body) {
@@ -24,62 +17,110 @@
     }
 
     try {
+
         const obj = JSON.parse(body);
 
-        const config =
-            obj &&
-            obj.result &&
-            obj.result.cms_user_center_welfare_farm_new_config;
+        let changed = 0;
 
-        if (
-            config &&
-            config.res_data &&
-            Array.isArray(config.res_data.data)
-        ) {
+        function clean(value) {
 
-            // 记录原来的数量
-            const oldCount = config.res_data.data.length;
-
-            // 清空福利/农场运营组件配置
-            config.res_data.data = [];
-
-            if (typeof $notification !== "undefined") {
-                $notification(
-                    "夸克去福利中心",
-                    "拦截成功",
-                    "已清除 " + oldCount + " 组福利中心配置"
-                );
+            if (!value || typeof value !== "object") {
+                return;
             }
 
-            $done({
-                body: JSON.stringify(obj)
-            });
+            if (Array.isArray(value)) {
 
-            return;
+                for (let i = value.length - 1; i >= 0; i--) {
+
+                    const item = value[i];
+
+                    if (
+                        item &&
+                        typeof item === "object"
+                    ) {
+                        clean(item);
+                    }
+                }
+
+                return;
+            }
+
+            for (const key of Object.keys(value)) {
+
+                const lower = key.toLowerCase();
+
+                /*
+                 * welfare 开头字段全部删除
+                 */
+                if (lower.startsWith("welfare")) {
+
+                    delete value[key];
+
+                    changed++;
+
+                    continue;
+                }
+
+                /*
+                 * 找到福利中心 CMS 配置
+                 */
+                if (
+                    key === "cms_user_center_welfare_farm_new_config"
+                ) {
+
+                    const config = value[key];
+
+                    if (
+                        config &&
+                        config.res_data &&
+                        Array.isArray(config.res_data.data)
+                    ) {
+
+                        /*
+                         * 只保留非福利内容
+                         *
+                         * 由于这个 CMS 配置本身就是
+                         * welfare/farm 卡片配置，
+                         * 清空 data 最可靠。
+                         */
+
+                        config.res_data.data = [];
+
+                        changed++;
+
+                    }
+
+                    continue;
+                }
+
+                clean(value[key]);
+            }
         }
 
-        // 没找到目标配置
-        if (typeof $notification !== "undefined") {
+        clean(obj);
+
+        if (changed > 0) {
+
             $notification(
                 "夸克去福利中心",
-                "未找到目标配置",
-                "CMS 结构可能发生变化"
+                "处理成功",
+                "修改项目：" + changed
             );
+
         }
 
-        $done({});
+        $done({
+            body: JSON.stringify(obj)
+        });
 
     } catch (e) {
 
-        if (typeof $notification !== "undefined") {
-            $notification(
-                "夸克去福利中心",
-                "处理失败",
-                String(e)
-            );
-        }
+        $notification(
+            "夸克去福利中心",
+            "脚本错误",
+            String(e)
+        );
 
-        // 出错时不修改原始响应
         $done({});
     }
 
