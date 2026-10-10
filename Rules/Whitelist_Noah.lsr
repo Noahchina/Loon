@@ -1,0 +1,38 @@
+#!name=RuleCorrection_Whitelist_Noah
+#!desc=白名单，需要直连
+
+#360手机卫士中的天气，骚扰拦截库
+DOMAIN-SUFFIX, cdn.weather.hao.360.cn
+DOMAIN-SUFFIX, strategy.shouji.360.cn
+DOMAIN-SUFFIX, antifraud.shouji.360.cn
+DOMAIN-SUFFIX, s.mvconf.f.360.cn
+
+#今日头条专业版放映厅才能正常加载
+DOMAIN-KEYWORD, snssdk.com
+
+#磁力天堂视频网站,有这两个规则才能正常显示
+DOMAIN-SUFFIX, clgod.xyz
+DOMAIN-SUFFIX, pstatp.com
+
+#苏周到，被adrules的规则误伤
+DOMAIN, ido.gepush.com
+
+#酷我音乐，没有它无法正常播放了
+DOMAIN, kuwo.120399.xyz
+
+#HP打印机
+DOMAIN-SUFFIX, api.ws-hp.com
+DOMAIN, hpsmart.com
+DOMAIN-SUFFIX, api.hp-smart.cn
+
+#守候网络
+DOMAIN-SUFFIX, sub1.sntp.me
+
+#Emby_Yuchu
+DOMAIN-SUFFIX, 13.yusen.cyou
+DOMAIN-SUFFIX, aaa.yusen6.ccwu.cc
+DOMAIN-SUFFIX, emby.yusen.us.ci
+DOMAIN-SUFFIX, embya.yusen.cyou
+DOMAIN-SUFFIX, emby.yusen.cc.cd
+
+
