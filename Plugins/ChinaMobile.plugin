@@ -1,0 +1,25 @@
+#!name=中国移动
+#!desc=某些APP要清除缓存或者重新安装拦截广告才会生效！
+#!author=奶思
+#!icon= https://raw.githubusercontent.com/Noahchina/Loon/main/icons/yidong.png
+#!homepage=https://github.com/fmz200/wool_scripts
+#!date=2026.04.15
+
+[Rule]
+# 拦截特定广告IP
+IP-CIDR,120.240.95.37/32,REJECT,no-resolve
+DOMAIN,da.mmarket.com,REJECT
+DOMAIN,onewsimg.com,REJECT-DROP
+DOMAIN,v.cmcc-cs.cn,REJECT-DROP
+# 视频（关键）
+DOMAIN-SUFFIX,miguvideo.com,REJECT-DROP
+
+[Rewrite]
+request if ${url} ~= /^https?:\/\/client\.app\.coc\.10086\.cn\/biz-orange\/DN\/init\/startInit/i then reject(404)
+request if ${url} ~= /^https?:\/\/client\.app\.coc\.10086\.cn\/biz-orange\/DN\/explorePage\/getAdverList/i then reject(404)
+# 多个悬浮窗
+request if ${url} ~= /^https?:\/\/(client\.app\.coc|app)\.10086\.cn\/biz-orange\/DN\/emotionMarket/i then reject(404)
+
+[MITM]
+hostname = client.app.coc.10086.cn, app.10086.cn
+

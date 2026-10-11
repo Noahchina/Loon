@@ -1,0 +1,11 @@
+#!name=Forward VIP
+#!desc=本地
+#!icon=https://raw.githubusercontent.com/Noahchina/Loon/main/icons/forward.png
+#!tag=Forward
+
+
+[Rewrite]
+request if ${url} ~= /^https:\/\/fluxapi\.vvebo\.vip\/v1\/(purchase\/iap\/subscription)/i as urlMatch then url.replace("https://mock.forward1.workers.dev/forward/v1/${urlMatch.1}")
+
+[Mitm]
+hostname = fluxapi.vvebo.vip

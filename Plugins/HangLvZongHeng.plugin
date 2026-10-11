@@ -1,0 +1,22 @@
+#!name=航旅纵横
+#!desc=Chat GPT基于奶思原插件补充
+#author=奶思
+#!homepage=https://github.com/fmz200/wool_scripts
+#!icon=https://raw.githubusercontent.com/Noahchina/Loon/main/icons/hanglv.png
+#!date=206.4.23
+#############################################
+
+[Argument]
+hlzh_enable = switch,true,false,tag=航旅纵横-脚本开关
+
+[Rewrite]
+request if ${url} ~= /^http?:\/\/(discardrp|startup)\.umetrip\.com\/gateway\/api\/umetrip\/native/i then reject(404)
+request if ${url} ~= /^https?:\/\/oss\.umetrip\.com\/fs\/advert\/polite\//i then reject(404)
+
+
+[Script]
+response if ${url} ~= /^http?:\/\/(114\.115\.217\.129)|(home\.umetrip\.com)\/gateway\/api\/umetrip\/native$/i then script("https://raw.githubusercontent.com/Noahchina/Loon/main/Scripts/umetrip_ads.js") with enable=${hlzh_enable}, tag="航旅纵横", timeout=60, requires_body=true
+
+
+[MITM]
+hostname = home.umetrip.com, discardrp.umetrip.com, startup.umetrip.com, oss.umetrip.com

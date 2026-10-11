@@ -1,0 +1,44 @@
+#!name=大众点评
+#!desc=某些APP要清除缓存或者重新安装拦截广告才会生效！
+#!author=奶思
+#!homepage=https://github.com/fmz200/wool_scripts
+#!icon=https://raw.githubusercontent.com/Noahchina/Loon/main/icons/dazhongdianping.png
+#!raw-url=https://github.com/fmz200/wool_scripts/raw/main/Loon/plugin/split/partD/DianPing.lpx
+#!tg-channel=https://t.me/inaisi
+#!date=
+#############################################
+
+[Argument]
+davsdmpk_enable = switch,true,false,tag=大众点评-脚本开关
+
+[Rewrite]
+# 开屏广告
+request if ${url} ~= /^https?:\/\/103\.37\.155\.60\/fetch/i then reject(404)
+request if ${url} ~= /^https?:\/\/catdot\.dianping\.com\/broker-service\/hijack/i then reject(404)
+request if ${url} ~= /^https?:\/\/mapi\.dianping\.com\/mapi\/operating\/(?>indexopsmodules|loadsplashconfig)/i then reject(404)
+request if ${url} ~= /^https?:\/\/mapi\.dianping\.com\/mapi\/intelliindex/i then reject_dict(200)
+request if ${url} ~= /^https?:\/\/mapi\.dianping\.com\/wdrpreload\/userprediction/i then reject(404)
+request if ${url} ~= /^https?:\/\/mapi\.dianping\.com\/adshopping/i then reject(404)
+request if ${url} ~= /^https?:\/\/img\.meituan\.net\/goodsawardpic\/\w+\.gif/i then reject_img(200)
+request if ${url} ~= /^https?:\/\/p\.meituan\.com\/api\/privacy\/config/i then reject(404)
+request if ${url} ~= /^https?:\/\/rms\.meituan\.com\/api\/v\d\/rmsmina\/c\/queryWechatAdvertisement/i then reject_dict(200)
+request if ${url} ~= /^https?:\/\/www\.dpfile\.com\/app\/fecommonservice-lottie\/ugc-write-done\/media/i then reject(404)
+request if ${url} ~= /^https?:\/\/www\.dpfile\.com\/picasso\/picasso-qa\/src\/AnswerList\/AnswerList-bundle/i then reject(404)
+request if ${url} ~= /^https?:\/\/www\.dpfile\.com\/sc\/indexpromotion/i then reject(404)
+request if ${url} ~= /^https?:\/\/catfront\.dianping\.com\/api\/metric\?v=\d&p=rn_gcbu_mrn-joy-poidetail/i then reject(404)
+request if ${url} ~= /^https?:\/\/awp-assets\.meituan\.net\/hfe\/fep\/\w+\.json/i then reject(404)
+request if ${url} ~= /^https?:\/\/s3plus\.meituan\.net\/ocean-blk-index\/index\/blk_conf/i then reject(404)
+request if ${url} ~= /^https?:\/\/p\d\.meituan\.net\/nrpresourcevenus\/\w+\.gif/i then reject_img(200)
+request if ${url} ~= /^https?:\/\/p\d\.meituan\.net\/travelcube\/(?!c129a661)\w+\.gif/i then reject_img(200)
+request if ${url} ~= /^https?:\/\/ddplus\.meituan\.net\/v\d\/mss_\w+\/(?>ehc|titansx|ddblue|edfu)\//i then reject(404)
+
+
+[Script]
+# 开屏广告
+response if ${url} ~= /^https?:\/\/img\.meituan\.net\/dpmobile\//i then script("https://raw.githubusercontent.com/Noahchina/Loon/main/Scripts/dianping.js") with enable=${davsdmpk_enable}, tag="大众点评", timeout=60, requires_body=true
+response if ${url} ~= /^https?:\/\/img\.meituan\.net\/goodsawardpic\/\w+\.(?!gif)\w+$/i then script("https://raw.githubusercontent.com/Noahchina/Loon/main/Scripts/dianping.js") with enable=${davsdmpk_enable}, tag="大众点评", timeout=60, requires_body=true
+response if ${url} ~= /^https?:\/\/ddplus\.meituan\.net\/v\d\/mss_\w+\/picassovc/i then script("https://raw.githubusercontent.com/Noahchina/Loon/main/Scripts/dianping.js") with enable=${davsdmpk_enable}, tag="大众点评", timeout=60, requires_body=true
+
+
+[MITM]
+hostname = 103.37.155.60, *.dianping.com, img.meituan.net, p.meituan.com, rms.meituan.com, www.dpfile.com, awp-assets.meituan.net, s3plus.meituan.net, p*.meituan.net, ddplus.meituan.net

@@ -1,0 +1,24 @@
+#!name=酷我音乐
+#!desc=解锁会员权限、支持切换音质【最高无损】
+#!author=𝐎𝐍𝐙𝟑𝐕
+#!icon=https://raw.githubusercontent.com/Noahchina/Loon/main/icons/kuwo.png
+#!tag=𝐎𝐍𝐙𝟑𝐕
+#!tag=𝐎𝐍𝐙𝟑𝐕
+#!homepage=https://t.me/onz3v_channel
+#!openUrl=https://t.me/onz3v_channel
+#!feedback=https://t.me/onz3v_group
+#!version=4.0.1
+#!date=2026-05-29
+
+[Rewrite]
+response if ${url} ~= /^https?:\/\/mobilead\.kuwo\.cn\/EcomResourceServer\/get(IOSIsHideAd|Motor)\.do/i then response.body.mock("text", "{}", 200)
+response if ${url} ~= /^https?:\/\/rich\.kuwo\.cn\/(AdService|ecom)\/kaiping\/ad[iI]nfo/i then response.body.mock("text", "{}", 200)
+response if ${url} ~= /^https?:\/\/wapi\.kuwo\.cn\/openapi\/v1\/user\/((adVip|pop|freeMode\/h5)\/)?(info|text|homePage)/i then response.body.mock("text", "{}", 200)
+response if ${url} ~= /^https?:\/\/appi\.kuwo\.cn\/kuwopay\vip-tab\/setting/i then response.body.mock("text", "{}", 200)
+
+[Script]
+response if ${url} ~= /^https?:\/\/(?:vip1\.kuwo\.cn\/(?:vip\/enc\/user\/vip|vip\/v2\/user\/vip|(?:commercia\/)?vip\/(?:v2\/theme\?op=gd|player\/getStyleListByModel|hanger\/wear)|commercia\/vip\/dressCenter\/getTabList|commercia\/vipTab\/myTab\/base)|.+\.kuwo\.cn\/mobi\.s\?f=(?:kuwo|kwxs)\&q=|music(?:pay)?\.kuwo\.cn\/music\.pay\?newver=3|tingshu\.kuwo\.cn\/(?:api\/v2\/pay\/app\/getConfigInfo|v2\/api\/pay\/payInfo\/kwplayer\/payMiniBar)|audiobookpay\.kuwo\.cn\/a\.p|homepages\.kuwo\.cn(?:\.eo\.dnse1\.com)?\/mgxh\.s)/i then script("https://raw.githubusercontent.com/Yuheng0101/X/main/Scripts/Kuwo/kuwo.js") with tag="酷我音乐重写", timeout=60, requires_body=true
+
+[MITM]
+hostname = *.kuwo.cn
+

@@ -1,0 +1,18 @@
+#!name=迅雷
+#!desc=迅雷Unlock 倍速播放、去广告解锁VIP 软件版本：2.2.21
+#!date=2026-01-21
+#!category=BOBO Premium
+#!author=伟人WeiGiegie[https://github.com/WeiGiegie/666]
+#!icon=https://raw.githubusercontent.com/Noahchina/Loon/main/icons/xunlei.png
+#!openUrl=https://apps.apple.com/app/id1503466530
+
+[Rewrite]
+request if ${url} ~= /^http:\/\/adapi\.izuiyou\.com/i then reject(404)
+request if ${url} ~= /^https?:\/\/api-shoulei-ssl\.xunlei\.com\/flowhub\/v1\/slots:batchGet/i then reject(404)
+
+[Script]
+# > 迅雷Unlock 倍速播放、去广告解锁VIP
+response if ${url} ~= /^https?:\/\/.+.xunlei.com\/(drive\/v1\/files|xluser.core.login\/v3\/getuserinfo)/i then script("https://raw.githubusercontent.com/Noahchina/Loon/main/Scripts/xunlei.js") with tag="迅雷Unlock", timeout=60, requires_body=true
+
+[MITM]
+hostname = *xunlei.com, api-shoulei-ssl.xunlei.com

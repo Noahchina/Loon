@@ -1,0 +1,11 @@
+#!name=信易知
+#!desc=VIP
+#!icon=https://raw.githubusercontent.com/Noahchina/Loon/main/icons/xinyizhi.png
+#https://raw.githubusercontent.com/liul0ng/quanx/refs/heads/main/xin.js
+
+[Script]
+response if ${url} ~= /^https:\/\/easycompanyinformation\.keeprisk\.com\/user\/queryUserInfo/i then script("https://raw.githubusercontent.com/Noahchina/Loon/main/Scripts/Xinyizhi.js") with tag="xin", timeout=60, requires_body=true
+
+[MITM]
+hostname = easycompanyinformation.keeprisk.com
+

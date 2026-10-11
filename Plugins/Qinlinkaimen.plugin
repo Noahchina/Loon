@@ -1,0 +1,11 @@
+#!name=亲邻开门去广告
+#!desc=去广告
+#!icon= https://raw.githubusercontent.com/Noahchina/Loon/main/icons/qinlinkaimen.png
+
+[Rewrite]
+# qadx.qinlinad.com 的 /ad/ 路径直接 reject
+request if ${url} ~= /^https?:\/\/qadx\.qinlinad\.com\/ad\//i then reject(404)
+
+[MITM]
+hostname = mall-dsp2.qinlinkeji.com, mallapi2.qinlinkeji.com, qadx.qinlinad.com
+

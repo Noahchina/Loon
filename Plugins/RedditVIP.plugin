@@ -1,0 +1,13 @@
+#!name=RedditVIP
+#!desc=Reddit去广告+解锁VIP
+#!author=🅜ⓘ🅚ⓔ🅟ⓗ🅘ⓔ
+#!icon=https://raw.githubusercontent.com/Noahchina/Loon/main/icons/reddit.png
+#源:https://github.com/venbow/QxLoonScript/blob/main/qx/redditvip-2.js
+
+[Script]
+response if ${url} ~= /^https:\/\/(gql(-fed)?\.reddit\.com|oauth\.reddit\.com)\//i then script("https://raw.githubusercontent.com/Noahchina/Loon/main/Scripts/redditvip.js") with tag="redditvip", timeout=60, requires_body=true
+
+
+[MITM]
+hostname = gql.reddit.com, gql-fed.reddit.com, oauth.reddit.com
+

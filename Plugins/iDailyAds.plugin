@@ -1,0 +1,15 @@
+#!name=i系列去广告
+#!desc=i系列应用净化处理
+#!icon=https://raw.githubusercontent.com/Noahchina/Loon/main/icons/imark.png
+
+[Rewrite]
+response if ${url} ~= /^https?:\/\/app-cdn\.2q10\.com\/app\/\w+\/honored/i then response.json.jq("del(.apps,.grids,.banner_popups,.badge,.banner)")
+request if ${url} ~= /^https?:\/\/idaily-cdn\.idailycdn\.com\/api\/(intro)/i then reject(200)
+request if ${url} ~= /^https?:\/\/icity-pres\.2q10\.com\/api\/v\d\/idly\/common\/launching/i then reject(200)
+request if ${url} ~= /^https?:\/\/idaily-cdn\.idailycdn\.com\/app\/idaily_portable\/honored/i then reject(200)
+request if ${url} ~= /^https?:\/\/app-cdn\.2q10\.com\/app\/idays\/popups/i then reject(200)
+request if ${url} ~= /^https?:\/\/idays-cdn\.2q10\.com\/app\/idays\/app_ad/i then reject(200)
+
+[MITM]
+hostname = app-cdn.2q10.com, idaily-cdn.idailycdn.com, icity-pres.2q10.com, idays-cdn.2q10.com
+

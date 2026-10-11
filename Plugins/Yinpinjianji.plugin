@@ -1,0 +1,13 @@
+#!name=音频剪辑VIP
+#!desc=测试APP版本4.8.7,基于原作者脚本修改，使可用于LOON
+#!icon=https://raw.githubusercontent.com/Noahchina/Loon/main/icons/yinpinjianji.png
+
+
+[Rewrite]
+request if ${url} ~= /^https:\/\/ad\.camoryapps\.com\/.*/i then reject(200)
+
+[Script]
+response if ${url} ~= /^https:\/\/pay\.camoryapps\.com\/appPay\/api\/(user|ios|vip).*/i then script("https://raw.githubusercontent.com/Noahchina/Loon/main/Scripts/Yinpinjianji.js") with tag="Yinpinjianji", timeout=60, requires_body=true
+
+[MITM]
+hostname = *.camoryapps.com

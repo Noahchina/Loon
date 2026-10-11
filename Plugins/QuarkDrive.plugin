@@ -1,0 +1,14 @@
+#!name=夸克网盘
+#!desc=夸克网盘 解锁SVIP
+#!date=2026-01-21
+#!category=🐹 BOBO Premium
+#!author= 叮当猫chxm1023[https://github.com/chxm1023/Rewrite]
+#!icon=https://raw.githubusercontent.com/Noahchina/Loon/main/icons/quark.png
+#!openUrl=https://apps.apple.com/app/id1160172628
+
+[Script]
+# > 夸克网盘 解锁SVIP
+response if ${url} ~= /^https?:\/\/drive.*\.quark\.cn\/.+\/clouddrive\/(member.+|distribute\/detail.+|capacity\/growth\/info)/i then script("https://raw.githubusercontent.com/Noahchina/Loon/main/Scripts/Quark.js") with tag="夸克网盘解锁SVIP", timeout=60, requires_body=true
+
+[MITM]
+hostname = drive*.quark.cn
