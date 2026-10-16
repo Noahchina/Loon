@@ -1,5 +1,5 @@
-#!name=Photomator
-#!desc=Photomator-照片编辑解锁订阅 + TouchRetouch解锁
+#!name=Photomator VIP
+#!desc=Photomator-照片编辑解锁订阅。在Loon使用和Touchretouch冲突，不可同时使用
 #!date=2026-01-21
 #!category=🐹 BOBO Premium
 #!author=叮当猫chxm1023[https://github.com/chxm1023/Rewrite]
@@ -10,12 +10,6 @@
 # > Photomator-照片编辑解锁订阅
 response if ${url} ~= /^https?:\/\/api\.revenuecat\.com\/.+\/(receipts$|subscribers\/?(.*?)*$)/i then script("https://raw.githubusercontent.com/Noahchina/Loon/main/Scripts/Photomator.js") with tag="Photomator", timeout=60, requires_body=true
 request if ${url} ~= /^https?:\/\/api\.revenuecat\.com\/.+\/(receipts$|subscribers\/?(.*?)*$)/i then script("https://raw.githubusercontent.com/Noahchina/Loon/main/Scripts/Photomator.js") with tag="Photomator", timeout=60
-
-# > TouchRetouch-照片编辑解锁订阅
-response if ${url} ~= /^https?:\/\/api\.revenuecat\.com\/v1\/(receipts|subscribers\/\$RCAnonymousID%3A\w{32})$/i then script("https://raw.githubusercontent.com/Noahchina/Loon/main/Scripts/TouchRetouch.js") with requires_body=true
-
-
-
 
 [MITM]
 hostname = api.revenuecat.com
