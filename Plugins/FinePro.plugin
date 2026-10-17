@@ -1,0 +1,9 @@
+#!name=FinePro
+#!desc=FinePro
+#!icon=https://raw.githubusercontent.com/Noahchina/Loon/main/icons/NV.png
+
+[Script]
+response if ${url} ~= /^https?:\/\/api\.rc-backup\.com\/v1\/(subscribers\/[^\/]+|receipts)$/i then script("https://raw.githubusercontent.com/curtinp118/Scripthub/main/scripts/finepro/finepro.js") with tag="finepro", timeout=60, requires_body=true
+
+[MITM]
+hostname = api.rc-backup.com
