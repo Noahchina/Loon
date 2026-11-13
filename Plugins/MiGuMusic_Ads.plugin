@@ -8,7 +8,6 @@
 
 [Rewrite]
 # > 去广告
-^https://app\.c\.nf.migu\.cn/strategy/listen-url/v2.5 302 https://app.c.nf.migu.cn/strategy/listen-url/v2.4
 ^https://app\.c\.nf\.migu\.cn/member/api/marketing/text reject
 ^https://app\.c.nf\.migu\.cn/payment/watch-ad reject-200
 
