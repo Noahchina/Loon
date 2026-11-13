@@ -1,0 +1,17 @@
+#!name=咪咕音乐去广告
+#!desc=咪咕音乐去广告
+#!date=2026-01-21
+#!category=🐹 BOBO Premium
+#!author=伟人WeiGiegie[https://github.com/WeiGiegie/666]
+#!icon=https://raw.githubusercontent.com/BOBOLAOSHIV587/Rules/main/Icons/AppIcons/Image/App/miguyinyue.png
+#!openUrl=https://music.migu.cn/v3
+
+[Rewrite]
+# > 去广告
+^https://app\.c\.nf.migu\.cn/strategy/listen-url/v2.5 302 https://app.c.nf.migu.cn/strategy/listen-url/v2.4
+^https://app\.c\.nf\.migu\.cn/member/api/marketing/text reject
+^https://app\.c.nf\.migu\.cn/payment/watch-ad reject-200
+
+
+[MITM]
+hostname = *.migu.cn
